@@ -14,5 +14,6 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'book', 'name','created_at')
+    list_display = ('id', 'book', 'name','rating','created_at')
+    list_filter = ('book', 'rating')
     search_fields = ('name', 'text', 'book__title')

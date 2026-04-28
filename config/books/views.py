@@ -8,13 +8,12 @@ from .models import Category, Book, Comment
 from .serializers import CategorySerializer, BookSerializer, CommentSerializer
 
 
-
-
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
+
 
 class BookViewSet(ModelViewSet):
     queryset = Book.objects.all()
@@ -22,8 +21,19 @@ class BookViewSet(ModelViewSet):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['category', 'is_active']
+    search_fields = ['title', 'author', 'description']
+    ordering_fields = ['price', 'title']
+
+
 class CommentViewSet(ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['book', 'rating']
+    search_fields = ['name', 'text', 'book__title']
+    ordering_fields = ['rating', 'created_at']
