@@ -3,17 +3,17 @@ from .models import Category, Book, Comment
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='categories-detail')
+    url =serializers.HyperlinkedIdentityField(view_name='categories-detail')
 
     class Meta:
         model = Category
-        fields = ['id', 'url', 'name', 'description']
+        fields = ['id','url','name','description']
 
 
 class CommentShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['id', 'name', 'text', 'rating']
+        fields = ['id','name','text','rating']
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -33,7 +33,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = [
+        fields =[
             'id','url','category','category_string','category_url','category_name','title','author','description','price','is_active','comments','comment_count',
         ]
 
@@ -50,7 +50,7 @@ class CommentSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='comments-detail')
 
     class Meta:
-        model = Comment
+        model= Comment
         fields = [
             'id','url','book','book_string','book_url','book_title','name','text','rating','created_at',
         ]

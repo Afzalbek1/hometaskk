@@ -22,9 +22,9 @@ class BookViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['category', 'is_active']
-    search_fields = ['title', 'author', 'description']
-    ordering_fields = ['price', 'title']
+    filterset_fields = ['category','is_active']
+    search_fields = ['title','author', 'description']
+    ordering_fields = ['price','title']
 
 
 class CommentViewSet(ModelViewSet):
