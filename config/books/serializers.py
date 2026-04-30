@@ -15,6 +15,15 @@ class CommentShortSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id','name','text','rating']
 
+class BookListSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category.name', read_only=True)
+
+    class Meta:
+        model = Book
+        fields = ['id', 'title', 'author', 'price', 'is_active', 'category_name']
+
+
+
 
 class BookSerializer(serializers.ModelSerializer):
     
